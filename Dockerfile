@@ -11,6 +11,7 @@ RUN apk add --no-cache gcc musl-dev linux-headers && \
 FROM python:3.12-alpine
 WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.12/site-packages/ /usr/local/lib/python3.12/site-packages/
+COPY --from=builder /usr/local/bin/ /usr/local/bin/
 COPY app/ .
 EXPOSE 5000
 CMD ["python", "server.py"]
